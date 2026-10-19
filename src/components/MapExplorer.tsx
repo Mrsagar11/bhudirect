@@ -160,7 +160,7 @@ export const MapExplorer: React.FC<MapExplorerProps> = ({
       const customIcon = L.divIcon({
         className: 'custom-plot-pin',
         html: `
-          <div class="flex items-center gap-1.5 px-2 py-1 rounded-md text-xs font-bold text-white shadow-lg border cursor-pointer transition-transform hover:scale-110 ${
+          <div class="flex items-center gap-1.5 px-2 py-1 rounded-md text-xs font-bold text-white border cursor-pointer ${
             isCurrentSelected 
               ? 'bg-emerald-600 border-emerald-300 ring-2 ring-emerald-400/50' 
               : 'bg-slate-900/90 border-slate-700 text-slate-200'
@@ -319,7 +319,7 @@ export const MapExplorer: React.FC<MapExplorerProps> = ({
         <div className="p-4 border-b border-slate-800 space-y-3 bg-slate-900/95">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" aria-hidden="true"></span>
               <h1 className="text-base font-bold text-white tracking-tight">Verified Cadastral Plots</h1>
             </div>
             <span className="text-xs font-mono font-semibold px-2 py-0.5 rounded bg-emerald-950/60 text-emerald-400 border border-emerald-800">
@@ -364,12 +364,13 @@ export const MapExplorer: React.FC<MapExplorerProps> = ({
             const savings = Math.round(plot.askingPrice * 0.02);
 
             return (
-              <div
+              <button
+                type="button"
                 key={plot.id}
                 onClick={() => handleSelectPlotCard(plot)}
-                className={`p-3.5 rounded-xl border transition-all cursor-pointer relative group ${
+                className={`p-3.5 rounded-xl border transition-all cursor-pointer relative group text-left w-full ${
                   isSelected
-                    ? 'bg-slate-800/90 border-emerald-500/80 shadow-lg shadow-emerald-950/40 ring-1 ring-emerald-500/40'
+                    ? 'bg-slate-800/90 border-emerald-500/80 ring-1 ring-emerald-500/40'
                     : 'bg-slate-950/60 border-slate-800/80 hover:border-slate-700 hover:bg-slate-800/40'
                 }`}
               >
@@ -378,7 +379,7 @@ export const MapExplorer: React.FC<MapExplorerProps> = ({
                   <img
                     src={plot.images[0]}
                     alt={plot.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent"></div>
 
@@ -457,7 +458,7 @@ export const MapExplorer: React.FC<MapExplorerProps> = ({
                     Make Offer
                   </button>
                 </div>
-              </div>
+              </button>
             );
           })}
         </div>
@@ -469,11 +470,11 @@ export const MapExplorer: React.FC<MapExplorerProps> = ({
         <div ref={mapContainerRef} className="w-full h-full" />
 
         {/* Floating Toggle Controls Overlay */}
-        <div className="absolute top-4 left-4 z-[500] flex flex-wrap items-center gap-2">
+        <div className="absolute top-4 left-4 z-30 flex flex-wrap items-center gap-2">
           {/* Collapse sidebar toggle on mobile */}
           <button
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-            className="px-3 py-2 rounded-xl bg-slate-900/95 backdrop-blur-md border border-slate-800 text-white text-xs font-bold shadow-xl flex items-center gap-2 hover:bg-slate-800 transition-colors"
+            className="px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs font-bold shadow-sm flex items-center gap-2 hover:bg-slate-800 transition-colors"
           >
             <SlidersHorizontal className="w-4 h-4 text-emerald-400" />
             <span>{isSidebarOpen ? 'Hide List' : 'Show Plots'}</span>
@@ -482,7 +483,7 @@ export const MapExplorer: React.FC<MapExplorerProps> = ({
           {/* Layer 1: Cadastral Survey / Gat Boundary Lines */}
           <button
             onClick={() => setShowCadastralGatLines(!showCadastralGatLines)}
-            className={`px-3 py-2 rounded-xl backdrop-blur-md border text-xs font-semibold shadow-xl flex items-center gap-2 transition-all ${
+            className={`px-3 py-2 rounded-xl border text-xs font-semibold shadow-sm flex items-center gap-2 transition-all ${
               showCadastralGatLines
                 ? 'bg-amber-950/90 border-amber-500/80 text-amber-300 ring-1 ring-amber-500/30'
                 : 'bg-slate-900/90 border-slate-800 text-slate-400 hover:text-white'
@@ -496,7 +497,7 @@ export const MapExplorer: React.FC<MapExplorerProps> = ({
           {/* Layer 2: Access Road Connectivity */}
           <button
             onClick={() => setShowAccessRoads(!showAccessRoads)}
-            className={`px-3 py-2 rounded-xl backdrop-blur-md border text-xs font-semibold shadow-xl flex items-center gap-2 transition-all ${
+            className={`px-3 py-2 rounded-xl border text-xs font-semibold shadow-sm flex items-center gap-2 transition-all ${
               showAccessRoads
                 ? 'bg-emerald-950/90 border-emerald-500/80 text-emerald-300 ring-1 ring-emerald-500/30'
                 : 'bg-slate-900/90 border-slate-800 text-slate-400 hover:text-white'
@@ -510,7 +511,7 @@ export const MapExplorer: React.FC<MapExplorerProps> = ({
           {/* Layer 3: Contours & Flood Risk */}
           <button
             onClick={() => setShowElevationSlope(!showElevationSlope)}
-            className={`px-3 py-2 rounded-xl backdrop-blur-md border text-xs font-semibold shadow-xl flex items-center gap-2 transition-all ${
+            className={`px-3 py-2 rounded-xl border text-xs font-semibold shadow-sm flex items-center gap-2 transition-all ${
               showElevationSlope
                 ? 'bg-cyan-950/90 border-cyan-500/80 text-cyan-300 ring-1 ring-cyan-500/30'
                 : 'bg-slate-900/90 border-slate-800 text-slate-400 hover:text-white'
@@ -524,7 +525,7 @@ export const MapExplorer: React.FC<MapExplorerProps> = ({
           {/* Basemap Switcher */}
           <button
             onClick={() => setBasemapType(basemapType === 'satellite' ? 'street' : 'satellite')}
-            className="px-3 py-2 rounded-xl bg-slate-900/95 backdrop-blur-md border border-slate-800 text-slate-300 text-xs font-semibold shadow-xl flex items-center gap-2 hover:text-white transition-colors"
+            className="px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 text-xs font-semibold shadow-sm flex items-center gap-2 hover:text-white transition-colors"
           >
             <Eye className="w-4 h-4 text-emerald-400" />
             <span>{basemapType === 'satellite' ? 'Satellite Imagery' : 'Vector Map'}</span>
@@ -533,7 +534,7 @@ export const MapExplorer: React.FC<MapExplorerProps> = ({
 
         {/* Selected Plot Floating Summary Card on Bottom */}
         {selectedPlot && (
-          <div className="absolute bottom-6 left-6 right-6 lg:left-auto lg:right-6 lg:w-[480px] z-[500] bg-slate-900/95 backdrop-blur-xl border border-slate-700/80 rounded-2xl p-4 shadow-2xl text-white">
+          <div className="absolute bottom-6 left-6 right-6 lg:left-auto lg:right-6 lg:w-[480px] z-30 bg-slate-900 border border-slate-700 rounded-2xl p-4 shadow-lg text-white">
             <div className="flex items-start justify-between gap-3">
               <div>
                 <div className="flex items-center gap-2">

@@ -29,13 +29,17 @@ export const Navbar: React.FC<NavbarProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo & Brand */}
-          <div className="flex items-center gap-3 cursor-pointer" onClick={() => setActiveTab('discovery')}>
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center shadow-lg shadow-emerald-500/20 ring-1 ring-white/20">
+          <button 
+            type="button" 
+            className="flex items-center gap-3 text-left focus:outline-none cursor-pointer" 
+            onClick={() => setActiveTab('discovery')}
+          >
+            <div className="w-10 h-10 rounded-xl bg-emerald-600 border border-emerald-500/40 flex items-center justify-center">
               <Compass className="w-6 h-6 text-slate-950 font-bold" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-extrabold text-xl tracking-tight bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent">
+                <span className="font-extrabold text-xl tracking-tight text-white">
                   BhuDirect
                 </span>
                 <span className="text-[10px] font-semibold uppercase px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 tracking-wider">
@@ -46,15 +50,15 @@ export const Navbar: React.FC<NavbarProps> = ({
                 Direct P2P Cadastral Land & Plot Marketplace
               </p>
             </div>
-          </div>
+          </button>
 
           {/* Navigation Tabs */}
-          <nav className="hidden md:flex items-center gap-1 bg-slate-950/60 p-1.5 rounded-xl border border-slate-800/80 shadow-inner">
+          <nav className="hidden md:flex items-center gap-1 bg-slate-950/60 p-1.5 rounded-xl border border-slate-800/80">
             <button
               onClick={() => setActiveTab('discovery')}
               className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all duration-150 ${
                 activeTab === 'discovery'
-                  ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20 font-bold'
+                  ? 'bg-emerald-500 text-slate-950 font-bold'
                   : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
               }`}
             >
@@ -66,7 +70,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               onClick={() => setActiveTab('demarcation')}
               className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all duration-150 ${
                 activeTab === 'demarcation'
-                  ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20 font-bold'
+                  ? 'bg-emerald-500 text-slate-950 font-bold'
                   : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
               }`}
             >
@@ -78,7 +82,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               onClick={() => setActiveTab('title-parser')}
               className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all duration-150 ${
                 activeTab === 'title-parser'
-                  ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20 font-bold'
+                  ? 'bg-emerald-500 text-slate-950 font-bold'
                   : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
               }`}
             >
@@ -90,20 +94,20 @@ export const Navbar: React.FC<NavbarProps> = ({
               onClick={() => setActiveTab('deal-room')}
               className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all duration-150 relative ${
                 activeTab === 'deal-room'
-                  ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20 font-bold'
+                  ? 'bg-emerald-500 text-slate-950 font-bold'
                   : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
               }`}
             >
               <Handshake className="w-4 h-4" />
               Deal Room
-              <span className="w-2 h-2 rounded-full bg-amber-400 absolute top-1 right-1 animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-amber-400 absolute top-1 right-1" aria-hidden="true" />
             </button>
 
             <button
               onClick={() => setActiveTab('services')}
               className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all duration-150 ${
                 activeTab === 'services'
-                  ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20 font-bold'
+                  ? 'bg-emerald-500 text-slate-950 font-bold'
                   : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
               }`}
             >
@@ -115,7 +119,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Right Action / Savings Ticker & Identity Badge */}
           <div className="flex items-center gap-3">
             <div className="hidden lg:flex items-center gap-2 bg-emerald-950/40 border border-emerald-500/30 px-3 py-1.5 rounded-xl">
-              <Sparkles className="w-4 h-4 text-emerald-400 animate-spin" style={{ animationDuration: '8s' }} />
+              <Sparkles className="w-4 h-4 text-emerald-400" />
               <div>
                 <div className="text-[10px] text-emerald-300 font-medium">Brokerage Eliminated</div>
                 <div className="text-xs font-bold text-emerald-400 font-mono">

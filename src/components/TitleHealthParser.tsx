@@ -209,7 +209,7 @@ export const TitleHealthParser: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left Column: Document Upload & Scanning Animation */}
         <div className="space-y-4">
-          <div className="p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl space-y-4">
+          <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 shadow-sm space-y-4">
             <h3 className="text-sm font-bold text-white flex items-center gap-2">
               <Upload className="w-4 h-4 text-emerald-400" />
               Upload Land Records for Diligence
@@ -217,7 +217,7 @@ export const TitleHealthParser: React.FC = () => {
 
             {/* Dropzone */}
             <label className="border-2 border-dashed border-slate-700 hover:border-emerald-500/80 rounded-2xl p-6 flex flex-col items-center justify-center text-center cursor-pointer transition-colors bg-slate-950/60 group">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
                 <FileText className="w-6 h-6" />
               </div>
               <span className="text-xs font-bold text-white mt-3">
@@ -255,7 +255,7 @@ export const TitleHealthParser: React.FC = () => {
           </div>
 
           {/* Title Health Score Gauge Card */}
-          <div className="p-6 rounded-3xl bg-gradient-to-br from-emerald-950/40 via-slate-900 to-slate-900 border border-emerald-500/30 shadow-xl text-center space-y-3">
+          <div className="p-6 rounded-2xl bg-gradient-to-br from-emerald-950/40 via-slate-900 to-slate-900 border border-emerald-500/30 shadow-sm text-center space-y-3">
             <span className="text-xs font-semibold text-emerald-300">
               BhuDirect Verified Title Score
             </span>
@@ -297,11 +297,11 @@ export const TitleHealthParser: React.FC = () => {
         <div className="lg:col-span-2 space-y-4">
           {/* Scanning Animation State */}
           {isScanning ? (
-            <div className="h-[480px] rounded-3xl bg-slate-900 border border-slate-800 flex flex-col items-center justify-center p-8 text-center space-y-4 shadow-xl">
+            <div className="h-[480px] rounded-2xl bg-slate-900 border border-slate-800 flex flex-col items-center justify-center p-8 text-center space-y-4 shadow-sm">
               <div className="relative w-20 h-20">
                 <div className="absolute inset-0 rounded-2xl bg-emerald-500/20 border border-emerald-500 animate-pulse"></div>
                 <div className="w-full h-full flex items-center justify-center text-emerald-400">
-                  <FileText className="w-10 h-10 animate-bounce" />
+                  <FileText className="w-10 h-10" />
                 </div>
               </div>
               <div>
@@ -316,7 +316,7 @@ export const TitleHealthParser: React.FC = () => {
           ) : (
             <div className="space-y-4">
               {/* Extracted Key Attributes Grid */}
-              <div className="p-5 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl space-y-3">
+              <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 shadow-sm space-y-3">
                 <div className="flex items-center justify-between">
                   <h3 className="text-sm font-bold text-white flex items-center gap-2">
                     <FileCheck2 className="w-4 h-4 text-emerald-400" />
@@ -372,7 +372,7 @@ export const TitleHealthParser: React.FC = () => {
               </div>
 
               {/* Diligence Audit Checklist */}
-              <div className="p-5 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl space-y-3">
+              <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 shadow-sm space-y-3">
                 <div className="flex items-center justify-between">
                   <h3 className="text-sm font-bold text-white flex items-center gap-2">
                     <ShieldCheck className="w-4 h-4 text-emerald-400" />

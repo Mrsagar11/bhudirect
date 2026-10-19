@@ -25,8 +25,8 @@ export const DeedModal: React.FC<DeedModalProps> = ({ deal, plot, onClose }) => 
   };
 
   return (
-    <div className="fixed inset-0 z-[1200] flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200">
-      <div className="bg-slate-900 border border-slate-700 rounded-3xl w-full max-w-4xl max-h-[92vh] overflow-y-auto shadow-2xl text-slate-100 flex flex-col my-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200">
+      <div className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-4xl max-h-[92vh] overflow-y-auto shadow-lg text-slate-100 flex flex-col my-auto">
         {/* Top Header */}
         <div className="sticky top-0 z-20 bg-slate-900/95 backdrop-blur-md border-b border-slate-800 p-4 sm:p-5 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -55,11 +55,12 @@ export const DeedModal: React.FC<DeedModalProps> = ({ deal, plot, onClose }) => 
               onClick={handleDownload}
               className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 border border-slate-700 flex items-center gap-1.5 transition-colors cursor-pointer"
             >
-              <Download className="w-3.5 h-3.5 text-cyan-400" />
+              <Download className="w-3.5 h-3.5 text-emerald-400" />
               Download Draft
             </button>
             <button
               onClick={onClose}
+              aria-label="Close modal"
               className="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-400 hover:text-white transition-colors ml-2"
             >
               <X className="w-4 h-4" />
@@ -71,7 +72,7 @@ export const DeedModal: React.FC<DeedModalProps> = ({ deal, plot, onClose }) => 
         <div className="p-6 sm:p-10 bg-slate-950/90 overflow-y-auto">
           <div 
             id="deed-document-content" 
-            className="max-w-3xl mx-auto bg-white text-slate-900 rounded-2xl p-8 sm:p-12 shadow-2xl border border-slate-200 font-serif leading-relaxed text-sm space-y-6"
+            className="max-w-3xl mx-auto bg-white text-slate-900 rounded-2xl p-8 sm:p-12 border border-slate-200 font-serif leading-relaxed text-sm space-y-6 shadow-sm"
           >
             {/* Header Stamp Paper Simulator */}
             <div className="border-4 border-double border-emerald-900 p-6 text-center space-y-2 bg-emerald-50/40 rounded-xl">

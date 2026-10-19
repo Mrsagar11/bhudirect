@@ -35,12 +35,12 @@ export const ScheduleVisitModal: React.FC<ScheduleVisitModalProps> = ({ plot, on
   };
 
   return (
-    <div className="fixed inset-0 z-[1100] flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200">
-      <div className="bg-slate-900 border border-slate-700 rounded-3xl w-full max-w-lg shadow-2xl text-slate-100 flex flex-col my-auto overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200">
+      <div className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-lg shadow-lg text-slate-100 flex flex-col my-auto overflow-hidden">
         {/* Header */}
         <div className="bg-slate-950/80 border-b border-slate-800 p-5 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400">
+            <div className="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400">
               <Calendar className="w-5 h-5" />
             </div>
             <div>
@@ -52,6 +52,7 @@ export const ScheduleVisitModal: React.FC<ScheduleVisitModalProps> = ({ plot, on
           </div>
           <button
             onClick={onClose}
+            aria-label="Close modal"
             className="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-400 hover:text-white transition-colors"
           >
             <X className="w-4 h-4" />
@@ -60,7 +61,7 @@ export const ScheduleVisitModal: React.FC<ScheduleVisitModalProps> = ({ plot, on
 
         {isBooked ? (
           <div className="p-8 text-center space-y-4">
-            <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto animate-bounce">
+            <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto">
               <CheckCircle2 className="w-8 h-8" />
             </div>
             <h4 className="text-xl font-bold text-white">Field Visit Scheduled!</h4>
@@ -110,9 +111,10 @@ export const ScheduleVisitModal: React.FC<ScheduleVisitModalProps> = ({ plot, on
             <div className="space-y-1.5">
               <label className="text-xs font-bold text-slate-300">Choose Visit Experience</label>
               <div className="grid grid-cols-2 gap-3">
-                <div
+                <button
+                  type="button"
                   onClick={() => setVisitType('accompanied')}
-                  className={`p-3 rounded-xl border cursor-pointer transition-all ${
+                  className={`p-3 rounded-xl border cursor-pointer transition-all text-left ${
                     visitType === 'accompanied'
                       ? 'bg-emerald-950/40 border-emerald-500/80 text-white ring-1 ring-emerald-500/30'
                       : 'bg-slate-950 border-slate-800 text-slate-400 hover:text-white'
@@ -125,24 +127,25 @@ export const ScheduleVisitModal: React.FC<ScheduleVisitModalProps> = ({ plot, on
                   <p className="text-[10px] text-slate-400 mt-1">
                     Free on-site escort to verify boundary pegs & meet the village Talathi.
                   </p>
-                </div>
+                </button>
 
-                <div
+                <button
+                  type="button"
                   onClick={() => setVisitType('self')}
-                  className={`p-3 rounded-xl border cursor-pointer transition-all ${
+                  className={`p-3 rounded-xl border cursor-pointer transition-all text-left ${
                     visitType === 'self'
                       ? 'bg-emerald-950/40 border-emerald-500/80 text-white ring-1 ring-emerald-500/30'
                       : 'bg-slate-950 border-slate-800 text-slate-400 hover:text-white'
                   }`}
                 >
                   <div className="flex items-center gap-2 text-xs font-bold">
-                    <Compass className="w-4 h-4 text-cyan-400" />
+                    <Compass className="w-4 h-4 text-emerald-400" />
                     Self-Guided GPS Plot Walk
                   </div>
                   <p className="text-[10px] text-slate-400 mt-1">
                     Receive direct GPS coordinates & walk the perimeter autonomously.
                   </p>
-                </div>
+                </button>
               </div>
             </div>
 
@@ -163,7 +166,7 @@ export const ScheduleVisitModal: React.FC<ScheduleVisitModalProps> = ({ plot, on
 
               <div className="space-y-1">
                 <label className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
-                  <Clock className="w-3.5 h-3.5 text-cyan-400" />
+                  <Clock className="w-3.5 h-3.5 text-emerald-400" />
                   Preferred Time Slot
                 </label>
                 <select

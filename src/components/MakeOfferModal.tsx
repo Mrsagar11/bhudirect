@@ -72,8 +72,8 @@ export const MakeOfferModal: React.FC<MakeOfferModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-[1100] flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200">
-      <div className="bg-slate-900 border border-slate-700 rounded-3xl w-full max-w-xl shadow-2xl text-slate-100 flex flex-col my-auto overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200">
+      <div className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-xl shadow-lg text-slate-100 flex flex-col my-auto overflow-hidden">
         {/* Header */}
         <div className="bg-slate-950/80 border-b border-slate-800 p-5 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -89,6 +89,7 @@ export const MakeOfferModal: React.FC<MakeOfferModalProps> = ({
           </div>
           <button
             onClick={onClose}
+            aria-label="Close modal"
             className="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-400 hover:text-white transition-colors"
           >
             <X className="w-4 h-4" />
@@ -167,7 +168,7 @@ export const MakeOfferModal: React.FC<MakeOfferModalProps> = ({
 
             <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
               <label className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
-                <Calendar className="w-3.5 h-3.5 text-cyan-400" />
+                <Calendar className="w-3.5 h-3.5 text-emerald-400" />
                 Closing / Registry Timeline
               </label>
               <select
@@ -235,7 +236,7 @@ export const MakeOfferModal: React.FC<MakeOfferModalProps> = ({
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full py-3 px-6 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-sm font-black transition-all shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full py-3 px-6 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-sm font-black transition-all flex items-center justify-center gap-2 cursor-pointer"
           >
             <span>Transmit Offer to Verified Owner</span>
             <ArrowRight className="w-4 h-4" />

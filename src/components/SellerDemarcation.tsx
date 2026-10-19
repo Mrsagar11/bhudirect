@@ -183,7 +183,7 @@ export const SellerDemarcation: React.FC = () => {
       const cornerIcon = L.divIcon({
         className: 'corner-peg-icon',
         html: `
-          <div class="w-6 h-6 rounded-full bg-emerald-500 text-slate-950 font-black text-xs flex items-center justify-center border-2 border-white shadow-xl cursor-pointer">
+          <div class="w-6 h-6 rounded-full bg-emerald-500 text-slate-950 font-black text-xs flex items-center justify-center border-2 border-white cursor-pointer">
             ${idx + 1}
           </div>
         `,
@@ -231,8 +231,8 @@ export const SellerDemarcation: React.FC = () => {
         }
       },
       (err) => {
-        console.warn('GPS position error or permission denied, simulating high-accuracy DGPS pin:', err);
-        // Fallback simulated DGPS corner point offset for demo
+        console.warn('GPS position unavailable or permission denied; using estimated position based on last known coordinate:', err.message);
+        // Use the last placed coordinate offset as a best-effort fallback when GPS is unavailable
         const basePoint = coordinates.length > 0 ? coordinates[coordinates.length - 1] : [18.5235, 73.5385];
         const simLat = Math.round((basePoint[0] + 0.0006) * 1000000) / 1000000;
         const simLng = Math.round((basePoint[1] + 0.0004) * 1000000) / 1000000;
@@ -326,9 +326,8 @@ export const SellerDemarcation: React.FC = () => {
         </div>
       </div>
 
-      {/* STEP 1: Anti-Broker Identity Gate */}
       {step === 1 && (
-        <div className="max-w-2xl mx-auto bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl">
+        <div className="max-w-2xl mx-auto bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-lg">
           <div className="flex items-center gap-3 pb-6 border-b border-slate-800">
             <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400">
               <ShieldCheck className="w-6 h-6" />
@@ -518,18 +517,17 @@ export const SellerDemarcation: React.FC = () => {
         </div>
       )}
 
-      {/* STEP 2: Satellite Boundary Demarcation Tool */}
       {step === 2 && (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Map Canvas (2 cols) */}
           <div className="lg:col-span-2 space-y-3">
-            <div className="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl relative h-[560px]">
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-lg relative h-[560px]">
               <div ref={mapContainerRef} className="w-full h-full" />
 
               {/* Floating Instructions Banner */}
               <div className="absolute top-4 left-4 right-4 z-[500] pointer-events-none flex justify-center">
-                <div className="pointer-events-auto bg-slate-900/90 backdrop-blur-md border border-slate-700/80 px-4 py-2 rounded-xl text-xs text-slate-200 shadow-xl flex items-center gap-3">
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <div className="pointer-events-auto bg-slate-900 border border-slate-700 px-4 py-2 rounded-xl text-xs text-slate-200 shadow-sm flex items-center gap-3">
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" aria-hidden="true"></span>
                   <span>
                     Click anywhere on the satellite image to place boundary corner stones. Drag markers to adjust.
                   </span>
@@ -541,7 +539,7 @@ export const SellerDemarcation: React.FC = () => {
                 <div className="pointer-events-auto flex items-center gap-2">
                   <button
                     onClick={handleWalkPerimeter}
-                    className="px-3.5 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-slate-950 text-xs font-bold shadow-xl flex items-center gap-2 transition-all cursor-pointer"
+                    className="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-slate-950 text-xs font-bold shadow-sm flex items-center gap-2 transition-all cursor-pointer"
                   >
                     <Compass className="w-4 h-4" />
                     Walk-the-Perimeter GPS
@@ -550,7 +548,7 @@ export const SellerDemarcation: React.FC = () => {
                   {currentGpsCoord && (
                     <button
                       onClick={handleAddGpsCorner}
-                      className="px-3.5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-bold shadow-xl flex items-center gap-2 transition-all cursor-pointer"
+                      className="px-3.5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-bold shadow-sm flex items-center gap-2 transition-all cursor-pointer"
                     >
                       <Plus className="w-4 h-4" />
                       Log Corner #{coordinates.length + 1}
@@ -561,7 +559,7 @@ export const SellerDemarcation: React.FC = () => {
                 <div className="pointer-events-auto flex items-center gap-2">
                   <button
                     onClick={() => setCoordinates([])}
-                    className="px-3 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-rose-400 border border-slate-700 text-xs font-semibold shadow-xl flex items-center gap-1.5 transition-colors cursor-pointer"
+                    className="px-3 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-rose-400 border border-slate-700 text-xs font-semibold shadow-sm flex items-center gap-1.5 transition-colors cursor-pointer"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
                     Reset
@@ -598,7 +596,7 @@ export const SellerDemarcation: React.FC = () => {
           {/* Right Sidebar: Real-time Turf.js Spatial Metrics & Corner List */}
           <div className="space-y-4">
             {/* Real-time Turf Area Card */}
-            <div className="p-5 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl space-y-4">
+            <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 shadow-sm space-y-4">
               <div className="flex items-center justify-between">
                 <h3 className="text-sm font-bold text-white flex items-center gap-2">
                   <Layers className="w-4 h-4 text-emerald-400" />
@@ -674,7 +672,7 @@ export const SellerDemarcation: React.FC = () => {
             </div>
 
             {/* Corner Markers List */}
-            <div className="p-5 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl space-y-3">
+            <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 shadow-sm space-y-3">
               <h4 className="text-xs font-bold text-slate-300">Boundary Peg Coordinates</h4>
               <div className="max-h-48 overflow-y-auto space-y-1.5 pr-1">
                 {coordinates.map(([lat, lng], idx) => (
@@ -692,6 +690,7 @@ export const SellerDemarcation: React.FC = () => {
                     </div>
                     <button
                       onClick={() => handleRemoveCorner(idx)}
+                      aria-label={`Remove corner ${idx + 1}`}
                       className="text-slate-500 hover:text-rose-400 p-1"
                     >
                       <Trash2 className="w-3 h-3" />
@@ -714,9 +713,8 @@ export const SellerDemarcation: React.FC = () => {
         </div>
       )}
 
-      {/* STEP 3: Listing Activated Confirmation */}
       {step === 3 && (
-        <div className="max-w-xl mx-auto bg-slate-900 border border-slate-800 rounded-3xl p-8 text-center space-y-5 shadow-2xl">
+        <div className="max-w-xl mx-auto bg-slate-900 border border-slate-800 rounded-2xl p-8 text-center space-y-5 shadow-lg">
           <div className="w-20 h-20 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto">
             <CheckCircle2 className="w-10 h-10" />
           </div>

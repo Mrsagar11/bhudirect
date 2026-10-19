@@ -107,7 +107,7 @@ export const DealRoom: React.FC<DealRoomProps> = ({ onOpenServicesTab }) => {
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 text-slate-100">
       {/* Top Banner */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-8 bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-8 bg-slate-900 border border-slate-800 rounded-2xl p-6">
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 flex-shrink-0">
             <Handshake className="w-6 h-6" />
@@ -144,10 +144,10 @@ export const DealRoom: React.FC<DealRoomProps> = ({ onOpenServicesTab }) => {
         {/* Left Column: Smart Escrow Deal Room */}
         <div className="lg:col-span-2 space-y-6">
           {/* Escrow Status & Locked Token Card */}
-          <div className="p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl space-y-5">
+          <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-5">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-800">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400">
                   <Lock className="w-5 h-5" />
                 </div>
                 <div>
@@ -187,7 +187,7 @@ export const DealRoom: React.FC<DealRoomProps> = ({ onOpenServicesTab }) => {
               </div>
 
               <div className="space-y-3">
-                {deal.milestones.map((m, idx) => (
+                {deal.milestones.map((m) => (
                   <div
                     key={m.id}
                     className={`p-4 rounded-2xl border transition-all ${
@@ -199,6 +199,8 @@ export const DealRoom: React.FC<DealRoomProps> = ({ onOpenServicesTab }) => {
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex items-start gap-3">
                         <button
+                          type="button"
+                          aria-label={m.completed ? `Mark ${m.title} as incomplete` : `Mark ${m.title} as completed`}
                           onClick={() => handleToggleMilestone(m.id)}
                           className={`w-6 h-6 rounded-lg flex items-center justify-center mt-0.5 transition-colors cursor-pointer ${
                             m.completed
@@ -258,7 +260,7 @@ export const DealRoom: React.FC<DealRoomProps> = ({ onOpenServicesTab }) => {
 
               <button
                 onClick={() => setShowDeedModal(true)}
-                className="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-black transition-all shadow-md shadow-emerald-500/25 flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
+                className="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-black transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
               >
                 <FileText className="w-4 h-4" />
                 View & Print Draft Deed
@@ -269,7 +271,7 @@ export const DealRoom: React.FC<DealRoomProps> = ({ onOpenServicesTab }) => {
 
         {/* Right Column: Direct Negotiation Thread & Counter-Offers */}
         <div className="space-y-4">
-          <div className="bg-slate-900 border border-slate-800 rounded-3xl p-5 shadow-xl flex flex-col h-[640px]">
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col h-[640px]">
             {/* Thread Header */}
             <div className="pb-3 border-b border-slate-800 flex items-center justify-between">
               <div>
@@ -382,6 +384,7 @@ export const DealRoom: React.FC<DealRoomProps> = ({ onOpenServicesTab }) => {
                 />
                 <button
                   type="submit"
+                  aria-label="Send message"
                   className="w-9 h-9 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 flex items-center justify-center transition-colors cursor-pointer flex-shrink-0"
                 >
                   <Send className="w-4 h-4" />
