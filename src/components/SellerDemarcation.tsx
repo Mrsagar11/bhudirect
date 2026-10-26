@@ -3,20 +3,16 @@ import L from 'leaflet';
 import { calculatePlotMetrics, GeoCalculationsResult, formatINR } from '../utils/geoCalculations';
 import { 
   ShieldCheck, 
-  MapPin, 
   Compass, 
   Layers, 
   Navigation, 
   Download, 
   Copy, 
   CheckCircle2, 
-  AlertCircle, 
   Plus, 
   Trash2, 
-  Sparkles,
   ArrowRight,
-  UserCheck,
-  FileCheck
+  UserCheck
 } from 'lucide-react';
 
 export const SellerDemarcation: React.FC = () => {
@@ -153,6 +149,7 @@ export const SellerDemarcation: React.FC = () => {
       map.remove();
       mapInstanceRef.current = null;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [step]);
 
   // Update polygon & corner markers on map

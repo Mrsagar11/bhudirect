@@ -1,24 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
-import { Plot, CadastralSurrounding } from '../types';
+import { Plot } from '../types';
 import { MOCK_PLOTS, MOCK_SURROUNDING_PARCELS } from '../data/mockData';
 import { formatINR, formatFullINR } from '../utils/geoCalculations';
 import { 
   Layers, 
   Eye, 
   MapPin, 
-  TrendingUp, 
   ShieldCheck, 
   Car, 
   Mountain, 
-  Droplet, 
   Search, 
   SlidersHorizontal,
   ChevronRight,
-  Maximize2,
-  Compass,
-  CheckCircle2,
-  AlertTriangle
+  CheckCircle2
 } from 'lucide-react';
 
 interface MapExplorerProps {
@@ -91,6 +86,7 @@ export const MapExplorer: React.FC<MapExplorerProps> = ({
       map.remove();
       mapInstanceRef.current = null;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Update Basemap Tiles
@@ -305,7 +301,7 @@ export const MapExplorer: React.FC<MapExplorerProps> = ({
   const valuationDeltaPercent = Math.round(
     ((selectedPlot.askingPrice - circleRateTotal) / circleRateTotal) * 100
   );
-  const brokerSavings = Math.round(selectedPlot.askingPrice * 0.02); // Standard 2% broker cut
+
 
   return (
     <div className="relative w-full h-[calc(100vh-4rem)] flex flex-col lg:flex-row overflow-hidden bg-slate-950">

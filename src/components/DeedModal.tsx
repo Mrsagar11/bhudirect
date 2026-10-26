@@ -1,7 +1,7 @@
 import React from 'react';
 import { EscrowDeal, Plot } from '../types';
 import { formatINR, formatFullINR } from '../utils/geoCalculations';
-import { X, Printer, Download, CheckCircle2, ShieldCheck, FileText } from 'lucide-react';
+import { X, Printer, Download, FileText } from 'lucide-react';
 
 interface DeedModalProps {
   deal: EscrowDeal;
@@ -9,7 +9,7 @@ interface DeedModalProps {
   onClose: () => void;
 }
 
-export const DeedModal: React.FC<DeedModalProps> = ({ deal, plot, onClose }) => {
+export const DeedModal: React.FC<DeedModalProps> = ({ deal, plot: _plot, onClose }) => {
   const handlePrint = () => {
     window.print();
   };

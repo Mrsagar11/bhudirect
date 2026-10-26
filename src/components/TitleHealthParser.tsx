@@ -5,15 +5,9 @@ import {
   ShieldCheck, 
   CheckCircle2, 
   AlertTriangle, 
-  AlertCircle, 
-  Search, 
   FileCheck2, 
   Download, 
-  Sparkles,
-  Scale,
-  Landmark,
-  Layers,
-  ArrowRight
+  Scale
 } from 'lucide-react';
 
 interface ExtractedDocData {
@@ -144,7 +138,7 @@ const SAMPLE_712_DATA: Record<string, ExtractedDocData> = {
 export const TitleHealthParser: React.FC = () => {
   const [selectedPreset, setSelectedPreset] = useState<string>('mulshi-142');
   const [isScanning, setIsScanning] = useState<boolean>(false);
-  const [activeTab, setActiveTab] = useState<'audit' | 'raw-extract'>('audit');
+
   const [parsedData, setParsedData] = useState<ExtractedDocData>(SAMPLE_712_DATA['mulshi-142']);
 
   const handleScanSample = (key: string) => {

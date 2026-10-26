@@ -18,14 +18,14 @@ interface ScheduleVisitModalProps {
 }
 
 export const ScheduleVisitModal: React.FC<ScheduleVisitModalProps> = ({ plot, onClose }) => {
-  if (!plot) return null;
-
   const [date, setDate] = useState<string>('2026-10-22');
   const [timeSlot, setTimeSlot] = useState<string>('10:00 AM - 12:00 PM');
   const [visitType, setVisitType] = useState<'self' | 'accompanied'>('accompanied');
   const [name, setName] = useState<string>('Dr. Vikramaditya Kulkarni');
   const [phone, setPhone] = useState<string>('+91 98230 77112');
   const [isBooked, setIsBooked] = useState<boolean>(false);
+
+  if (!plot) return null;
 
   const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${plot.center[0]},${plot.center[1]}`;
 

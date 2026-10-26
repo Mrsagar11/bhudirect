@@ -9,16 +9,9 @@ import { TitleHealthParser } from './components/TitleHealthParser';
 import { DealRoom } from './components/DealRoom';
 import { ServicesMarketplace } from './components/ServicesMarketplace';
 import { Plot } from './types';
-import { MOCK_PLOTS } from './data/mockData';
 import { 
-  ShieldCheck, 
-  Layers, 
   Compass, 
-  Sparkles, 
-  MapPin, 
   Lock, 
-  FileText,
-  Building2,
   CheckCircle2,
   Award
 } from 'lucide-react';
@@ -91,7 +84,7 @@ export function App() {
             setSelectedPlotForDetail(null);
             setSelectedPlotForVisit(plot);
           }}
-          onOpenTitleScanner={(plot) => {
+          onOpenTitleScanner={(_plot) => {
             setSelectedPlotForDetail(null);
             setActiveTab('title-parser');
           }}

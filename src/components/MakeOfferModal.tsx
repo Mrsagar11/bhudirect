@@ -5,12 +5,10 @@ import { formatINR, formatFullINR } from '../utils/geoCalculations';
 import { 
   X, 
   Handshake, 
-  ShieldCheck, 
   Sparkles, 
   Calendar, 
   Wallet, 
   ArrowRight,
-  CheckCircle2,
   Lock
 } from 'lucide-react';
 
@@ -32,18 +30,20 @@ export const MakeOfferModal: React.FC<MakeOfferModalProps> = ({
   onClose,
   onSubmitOffer,
 }) => {
-  if (!plot) return null;
-
   // Initial state default: 5% below asking price
   const [offeredPrice, setOfferedPrice] = useState<number>(
-    Math.round(plot.askingPrice * 0.95 / 50000) * 50000
+    plot ? Math.round(plot.askingPrice * 0.95 / 50000) * 50000 : 0
   );
   const [tokenAdvance, setTokenAdvance] = useState<number>(100000); // ₹1 Lakh standard earnest token
   const [timelineDays, setTimelineDays] = useState<number>(30);
   const [financing, setFinancing] = useState<'Self-Funded / Cash' | 'Pre-Approved Land Loan' | 'Bank Loan Pending'>('Self-Funded / Cash');
   const [note, setNote] = useState<string>(
-    `Namaste ${plot.seller.name}. I have inspected Gat ${plot.gatNumber} on BhuDirect and love the parcel. I am ready to lock a ₹${(tokenAdvance/100000).toFixed(1)} Lakh earnest advance in BhuDirect escrow today.`
+    plot
+      ? `Namaste ${plot.seller.name}. I have inspected Gat ${plot.gatNumber} on BhuDirect and love the parcel. I am ready to lock a ₹${(tokenAdvance/100000).toFixed(1)} Lakh earnest advance in BhuDirect escrow today.`
+      : ''
   );
+
+  if (!plot) return null;
 
   const discountPercent = Math.round(((offeredPrice - plot.askingPrice) / plot.askingPrice) * 100);
   const buyerBrokerageSaved = Math.round(offeredPrice * 0.02);

@@ -3,16 +3,13 @@ import { Plot } from '../types';
 import { formatINR, formatFullINR } from '../utils/geoCalculations';
 import { 
   X, 
-  MapPin, 
   ShieldCheck, 
   Car, 
   Mountain, 
-  Droplet, 
   TrendingUp, 
   FileText, 
   CheckCircle2, 
   AlertCircle, 
-  ArrowUpRight,
   UserCheck,
   Calendar,
   Layers,

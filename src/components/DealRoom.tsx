@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { EscrowDeal, NegotiationOffer, Plot } from '../types';
+import { EscrowDeal, NegotiationOffer } from '../types';
 import { MOCK_ACTIVE_DEAL, MOCK_ACTIVE_OFFER, MOCK_PLOTS } from '../data/mockData';
 import { formatINR, formatFullINR } from '../utils/geoCalculations';
 import { DeedModal } from './DeedModal';
@@ -10,13 +10,7 @@ import {
   Lock, 
   CheckCircle2, 
   Send, 
-  Clock, 
-  Building2, 
-  Sparkles, 
-  Calendar,
-  AlertCircle,
-  ArrowRight,
-  TrendingDown
+  Sparkles
 } from 'lucide-react';
 
 interface DealRoomProps {
@@ -30,7 +24,7 @@ export const DealRoom: React.FC<DealRoomProps> = ({ onOpenServicesTab }) => {
   const [counterPrice, setCounterPrice] = useState<number>(deal.totalPrice);
   const [isCounterOpen, setIsCounterOpen] = useState(false);
   const [showDeedModal, setShowDeedModal] = useState(false);
-  const [activeSubTab, setActiveSubTab] = useState<'escrow' | 'negotiation'>('escrow');
+
 
   // Milestone toggler
   const handleToggleMilestone = (milestoneId: string) => {

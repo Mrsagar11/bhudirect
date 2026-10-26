@@ -15,8 +15,6 @@ import {
   Clock, 
   ShieldCheck, 
   ArrowRight,
-  Sparkles,
-  UserCheck,
   X
 } from 'lucide-react';
 
